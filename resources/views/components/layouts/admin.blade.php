@@ -78,10 +78,10 @@
 <body class="layout-fixed sidebar-expand-lg sidebar-open bg-body-tertiary">
 <!--begin::App Wrapper-->
 <div class="app-wrapper">
-    <x-partials.admin.alerts />
     <x-partials.admin.header />
     <x-partials.admin.sidebar />
     <div class="app-content">
+        <x-toaster-hub />
         {{ $slot }}
     </div>
     <x-partials.admin.footer />

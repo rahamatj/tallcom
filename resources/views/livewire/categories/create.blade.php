@@ -2,9 +2,11 @@
 
 use Livewire\Volt\Component;
 use Livewire\WithFileUploads;
+use Masmerise\Toaster\Toaster;
+use Masmerise\Toaster\Toastable;
 
 new class extends Component {
-    use WithFileUploads;
+    use WithFileUploads, Toastable;
 
     public $name;
     public $image;
@@ -31,8 +33,7 @@ new class extends Component {
         // Reset form fields
         $this->reset(['name', 'image']);
 
-        // Optionally, you can emit an event or redirect
-        session()->flash('success', 'Category created successfully.');
+        Toaster::success('Category created!');
     }
 }; ?>
 
@@ -77,7 +78,12 @@ new class extends Component {
                 <!--end::Body-->
                 <!--begin::Footer-->
                 <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary">
+                        Submit
+                    </button>
+                    <span wire:loading wire:target="create" class="text-blue-600 mt-2">
+                        Saving... ⏳
+                    </span>
                 </div>
                 <!--end::Footer-->
             </form>

@@ -4,10 +4,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/admin/dashboard');
 
+Route::get('/', function () {
+    return redirect('/admin/dashboard');
+});
+
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
-    Route::get('/', function () {
-        return redirect('/admin/dashboard');
-    });
 
     Route::view('/dashboard', 'admin.dashboard')->name('dashboard');
 

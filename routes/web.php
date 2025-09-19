@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 Route::redirect('/', '/admin/dashboard');
 
 Route::get('/admin', function () {
-    return redirect('/admin/dashboard');
+    return redirect()->route('admin.dashboard');
 });
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {

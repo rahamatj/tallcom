@@ -2,11 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
-    Route::get('/', function () {
-        return redirect()->route('admin.dashboard');
-    });
+Route::redirect('/', '/admin/dashboard');
+Route::redirect('/admin', '/admin/dashboard');
 
+Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::view('/dashboard', 'admin.dashboard')->name('dashboard');
 
     Route::view('/categories/all', 'admin.categories.index')->name('categories.all');

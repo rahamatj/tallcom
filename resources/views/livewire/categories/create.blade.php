@@ -48,7 +48,7 @@ new class extends Component {
                 <!--begin::Body-->
                 <div class="card-body">
                     <div>
-                        <label for="name" class="form-label">Create Category</label>
+                        <label for="name" class="form-label">Category Name</label>
                         <input
                             type="text"
                             class="form-control"

@@ -14,16 +14,18 @@ new class extends Component {
     public $image;
     public $price;
     public $description;
+    public $is_trending;
+    public $you_may_like;
 
     public function mount(\App\Models\Product $product)
     {
-//        dd($product);
-
         $this->product = $product;
         $this->category_id = $product->category_id;
         $this->name = $product->name;
         $this->price = $product->price;
         $this->description = $product->description;
+        $this->is_trending = (bool) $product->is_trending;
+        $this->you_may_like = (bool) $product->you_may_like;
     }
 
     public function with()
@@ -50,6 +52,8 @@ new class extends Component {
                     }
                 },
             ],
+            'is_trending' => 'boolean',
+            'you_may_like' => 'boolean',
         ]);
 
         $path = $this->product->image;
@@ -72,6 +76,8 @@ new class extends Component {
             'image' => $path,
             'price' => $this->price,
             'description' => $this->description,
+            'is_trending' => $this->is_trending,
+            'you_may_like' => $this->you_may_like,
         ]);
 
         // Reset form fields
@@ -184,6 +190,33 @@ new class extends Component {
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="is_trending" name="is_trending" wire:model="is_trending" />
+                        <label class="form-check-label" for="is_trending">
+                            Is Trending?
+                        </label>
+                    </div>
+
+                    <div class="mb-3">
+                        @error('is_trending')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="you_may_like" name="you_may_like" wire:model="you_may_like" />
+                        <label class="form-check-label" for="you_may_like">
+                            You May Like?
+                        </label>
+                    </div>
+
+                    <div class="mb-3">
+                        @error('you_may_like')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+
                     <!--end::Body-->
                     <!--begin::Footer-->
                     <div class="card-footer">

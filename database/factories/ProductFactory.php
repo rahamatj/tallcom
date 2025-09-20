@@ -17,10 +17,12 @@ class ProductFactory extends Factory
     public function definition(): array
     {
         return [
-            'category_id' => \App\Models\Category::factory(),
+            'category_id' => $this->faker->numberBetween(1, 3), // Assuming you have 3 categories
             'name' => $this->faker->word(),
             'price' => $this->faker->randomFloat(2, 1, 1000),
             'description' => $this->faker->paragraph(),
+            'is_trending' => $this->faker->boolean(),
+            'you_may_like' => $this->faker->boolean(),
         ];
     }
 }

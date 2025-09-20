@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->decimal('price', 8, 2);
             $table->text('description')->nullable();
+            $table->boolean('is_trending')->default(false);
+            $table->boolean('you_may_like')->default(false);
             $table->timestamps();
         });
     }

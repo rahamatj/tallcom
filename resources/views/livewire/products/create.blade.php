@@ -13,6 +13,8 @@ new class extends Component {
     public $image;
     public $price;
     public $description;
+    public $is_trending;
+    public $you_may_like;
 
     public function with()
     {
@@ -21,10 +23,8 @@ new class extends Component {
         ];
     }
 
-    public function create()
+    public function update()
     {
-//        dd($this->all());
-
         $this->validate([
             'category_id' => 'required|exists:categories,id',
             'name' => 'required|string|max:255',
@@ -40,6 +40,8 @@ new class extends Component {
                     }
                 },
             ],
+            'is_trending' => 'boolean',
+            'you_may_like' => 'boolean',
         ]);
 
         // Handle file upload if image is provided
@@ -56,6 +58,8 @@ new class extends Component {
             'image' => $imagePath,
             'price' => $this->price,
             'description' => $this->description,
+            'is_trending' => $this->is_trending,
+            'you_may_like' => $this->you_may_like,
         ]);
 
         // Reset form fields
@@ -74,7 +78,7 @@ new class extends Component {
             </div>
             <!--end::Header-->
             <!--begin::Form-->
-            <form method="POST" enctype="multipart/form-data" wire:submit.prevent="create">
+            <form method="POST" enctype="multipart/form-data" wire:submit.prevent="update">
                 <!--begin::Body-->
                 <div class="card-body">
                     <div>
@@ -85,12 +89,6 @@ new class extends Component {
                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                             @endforeach
                         </select>
-                    </div>
-
-                    <div class="mb-3">
-                        @error('$category_id')
-                        <span class="text-danger">{{ $message }}</span>
-                        @enderror
                     </div>
 
                     <div class="mb-3">
@@ -166,6 +164,33 @@ new class extends Component {
                         <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="is_trending" name="is_trending" wire:model="is_trending" />
+                        <label class="form-check-label" for="is_trending">
+                            Is Trending?
+                        </label>
+                    </div>
+
+                    <div class="mb-3">
+                        @error('is_trending')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="you_may_like" name="you_may_like" wire:model="you_may_like" />
+                        <label class="form-check-label" for="you_may_like">
+                            You May Like?
+                        </label>
+                    </div>
+
+                    <div class="mb-3">
+                        @error('you_may_like')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+
                     <!--end::Body-->
                     <!--begin::Footer-->
                     <div class="card-footer">
@@ -176,6 +201,7 @@ new class extends Component {
                             Saving... ⏳
                         </span>
                     </div>
+                </div>
                     <!--end::Footer-->
             </form>
             <!--end::Form-->

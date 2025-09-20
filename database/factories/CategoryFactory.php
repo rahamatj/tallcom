@@ -19,6 +19,7 @@ class CategoryFactory extends Factory
         return [
             'name' => $this->faker->word(),
             'image' => $this->faker->imageUrl(640, 480, 'cats', true, 'Faker'),
+            'is_featured' => $this->faker->boolean(80), // 80% chance of being true
         ];
     }
 }

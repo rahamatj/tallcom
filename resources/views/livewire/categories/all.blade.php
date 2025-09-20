@@ -9,9 +9,17 @@ use Masmerise\Toaster\Toaster;
 new class extends Component {
     use WithPagination, Toastable;
 
+    public $search = '';
+
     public function with() {
+
+        $categories = Category::when($this->search, function($query) {
+                            $query->where('name', 'like', '%' . $this->search . '%');
+                        })
+                        ->paginate(10);
+
         return [
-            'categories' => Category::orderBy('id', 'desc')->paginate(10)
+            'categories' => $categories
         ];
     }
 
@@ -28,15 +36,21 @@ new class extends Component {
 
 <div>
     <div class="card mb-4">
-        <div class="card-header"><h3 class="card-title">Bordered Table</h3></div>
+        <div class="card-header"><h3 class="card-title">Categories</h3></div>
         <!-- /.card-header -->
         <div class="card-body">
+            <div class="row">
+                <div class="offset-md-10 col-md-2">
+                    <input type="text" class="form-control mb-1 me-2" placeholder="Search..." wire:model.live="search">
+                </div>
+            </div>
             <table class="table table-bordered">
                 <thead>
                 <tr>
                     <th style="width: 10px">#</th>
                     <th>Name</th>
                     <th>Image</th>
+                    <th>Featured</th>
                     <th style="width: 200px">Action</th>
                 </tr>
                 </thead>
@@ -47,6 +61,13 @@ new class extends Component {
                     <td>{{ $category->name }}</td>
                     <td>
                         <img src='{{ asset("storage/{$category->image}") }}' alt="{{ $category->name }}" class="img-thumbnail" style="width: 50px; height: 50px; object-fit: cover;">
+                    </td>
+                    <td>
+                        @if($category->is_featured)
+                            <span class="badge bg-success">Yes</span>
+                        @else
+                            <span class="badge bg-danger">No</span>
+                        @endif
                     </td>
                     <td>
                         <a href="{{ route('admin.categories.edit', $category) }}" class="btn btn-sm btn-warning">Edit</a>

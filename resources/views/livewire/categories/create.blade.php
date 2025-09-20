@@ -10,11 +10,13 @@ new class extends Component {
 
     public $name;
     public $image;
+    public $is_featured = false;
 
     public function create() {
         $this->validate([
             'name' => 'required|string|max:255',
             'image' => 'required|image|max:1024', // 1MB Max
+            'is_featured' => 'boolean',
         ]);
 
         // Handle file upload if image is provided
@@ -28,10 +30,11 @@ new class extends Component {
         \App\Models\Category::create([
             'name' => $this->name,
             'image' => $imagePath,
+            'is_featured' => $this->is_featured,
         ]);
 
         // Reset form fields
-        $this->reset(['name', 'image']);
+        $this->reset();
 
         Toaster::success('Category created!');
     }
@@ -74,7 +77,21 @@ new class extends Component {
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="is_featured" name="is_featured" wire:model="is_featured" />
+                        <label class="form-check-label" for="is_featured">
+                            Is featured?
+                        </label>
+                    </div>
+
+                    <div class="mb-3">
+                        @error('is_featured')
+                        <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
                 </div>
+
                 <!--end::Body-->
                 <!--begin::Footer-->
                 <div class="card-footer">

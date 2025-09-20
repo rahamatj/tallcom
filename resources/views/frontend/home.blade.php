@@ -1,3 +1,3 @@
 <x-layouts.app>
-    <h1>Hello from home</h1>
+    <x-partials.frontend.main />
 </x-layouts.app>

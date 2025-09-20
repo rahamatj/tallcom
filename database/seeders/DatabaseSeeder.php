@@ -23,18 +23,7 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('12345678'),
         ]);
 
-        Category::factory()->create([
-            'name' => 'Men',
-        ]);
-
-        Category::factory()->create([
-            'name' => 'Women',
-        ]);
-
-        Category::factory()->create([
-            'name' => 'Baby',
-        ]);
-
-        Product::factory(10)->create();
+        $this->call(CategorySeeder::class);
+        $this->call(ProductSeeder::class);
     }
 }

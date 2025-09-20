@@ -2,11 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::redirect('/', '/admin/dashboard');
-
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
-//    Route::redirect('/', '/dashboard');
-
     Route::view('/dashboard', 'admin.dashboard')->name('dashboard');
 
     Route::view('/categories/all', 'admin.categories.index')->name('categories.all');
@@ -17,4 +13,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::view('/products/create', 'admin.products.create')->name('products.new');
     Route::view('/products/{product}/edit', 'admin.products.edit')->name('products.edit');
 });
+
+Route::get("/", [\App\Http\Controllers\FrontendController::class, 'home'])->name('home');
+Route::get("/categories/{category}", [\App\Http\Controllers\FrontendController::class, 'category'])->name('category');
 

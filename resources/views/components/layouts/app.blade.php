@@ -1,67 +1,100 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<!-- Mirrored from preview.colorlib.com/theme/capitalshop/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 17 Sep 2025 01:01:30 GMT -->
+<head><script>(function(w,i,g){w[g]=w[g]||[];if(typeof w[g].push=='function')w[g].push(i)})
+        (window,'G-SEKJ4E9T4H','google_tags_first_party');</script><script async src="https://preview.colorlib.com/s9cc/"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('set', 'developer_id.dYzg1YT', true);
+        gtag('config', 'G-SEKJ4E9T4H');
+    </script>
+
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ isset($title) ? $title.' - '.config('app.name') : config('app.name') }}</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Shop | eCommers</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('frontend/assets/img/icon/favicon.png') }}">
 
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <!-- CSS here -->
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/slicknav.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/flaticon.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/animate.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/price_rangs.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/magnific-popup.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/fontawesome-all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/themify-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/slick.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/nice-select.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/assets/css/style.css') }}">
 </head>
-<body class="min-h-screen font-sans antialiased bg-base-200">
+<body>
+<!--? Preloader Start -->
+<div id="preloader-active">
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="preloader-inner position-relative">
+            <div class="preloader-circle"></div>
+            <div class="preloader-img pere-text">
+                <img src="{{ asset('frontend/assets/img/icon/loder.png') }}" alt="loder">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Preloader Start -->
+<x-partials.frontend.header />
+{{ $slot }}
+<x-partials.frontend.footer />
+<!-- Scroll Up -->
+<x-partials.frontend.scroll-up />
 
-    {{-- NAVBAR mobile only --}}
-    <x-nav sticky class="lg:hidden">
-        <x-slot:brand>
-            <x-app-brand />
-        </x-slot:brand>
-        <x-slot:actions>
-            <label for="main-drawer" class="lg:hidden me-3">
-                <x-icon name="o-bars-3" class="cursor-pointer" />
-            </label>
-        </x-slot:actions>
-    </x-nav>
+<!-- JS here -->
+<!-- Jquery, Popper, Bootstrap -->
+<script src="{{ asset('frontend/assets/js/vendor/modernizr-3.5.0.min.js') }}"></script>
+<script src="{{ asset('frontend/assets/js/vendor/jquery-1.12.4.min.js') }}"></script>
+<script src="{{ asset('frontend/assets/js/popper.min.js') }}"></script>
+<script src="{{ asset('frontend/assets/js/bootstrap.min.js') }}"></script>
 
-    {{-- MAIN --}}
-    <x-main>
-        {{-- SIDEBAR --}}
-        <x-slot:sidebar drawer="main-drawer" collapsible class="bg-base-100 lg:bg-inherit">
+<!-- Slick-slider , Owl-Carousel ,slick-nav -->
+<script src="{{ asset('frontend/assets/js/owl.carousel.min.js') }}"></script>
+<script src="{{ asset('frontend/assets/js/slick.min.js') }}"></script>
+<script src="{{ asset('frontend/assets/js/jquery.slicknav.min.js') }}"></script>
 
-            {{-- BRAND --}}
-            <x-app-brand class="px-5 pt-4" />
+<!--wow , counter , waypoint, Nice-select -->
+<script src="{{ asset('frontend/assets/js/wow.min.js') }}"></script>
+<script src="{{ asset('frontend/assets/js/jquery.magnific-popup.js') }}"></script>
+<script src="{{ asset('frontend/assets/js/jquery.nice-select.min.js') }}"></script>
+<script src="{{ asset('frontend/assets/js/jquery.counterup.min.js') }}"></script>
+<script src="{{ asset('frontend/assets/js/waypoints.min.js') }}"></script>
+<script src="{{ asset('frontend/assets/js/price_rangs.js') }}"></script>
 
-            {{-- MENU --}}
-            <x-menu activate-by-route>
+<!-- contact js -->
+<script src="{{ asset('frontend/assets/js/contact.js') }}"></script>
+<script src="{{ asset('frontend/assets/js/jquery.form.js') }}"></script>
+<script src="{{ asset('frontend/assets/js/jquery.validate.min.js') }}"></script>
+<script src="{{ asset('frontend/assets/js/mail-script.js') }}"></script>
+<script src="{{ asset('frontend/assets/js/jquery.ajaxchimp.min.js') }}"></script>
 
-                {{-- User --}}
-                @if($user = auth()->user())
-                    <x-menu-separator />
+<!--  Plugins, main-Jquery -->
+<script src="{{ asset('frontend/assets/js/plugins.js') }}"></script>
+<script src="{{ asset('frontend/assets/js/main.js') }}"></script>
 
-                    <x-list-item :item="$user" value="name" sub-value="email" no-separator no-hover class="-mx-2 !-my-2 rounded">
-                        <x-slot:actions>
-                            <x-button icon="o-power" class="btn-circle btn-ghost btn-xs" tooltip-left="logoff" no-wire-navigate link="/logout" />
-                        </x-slot:actions>
-                    </x-list-item>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
 
-                    <x-menu-separator />
-                @endif
+    gtag('config', 'UA-23581568-13');
+</script>
 
-                <x-menu-item title="Hello" icon="o-sparkles" link="/" />
-                
-                <x-menu-sub title="Settings" icon="o-cog-6-tooth">
-                    <x-menu-item title="Wifi" icon="o-wifi" link="####" />
-                    <x-menu-item title="Archives" icon="o-archive-box" link="####" />
-                </x-menu-sub>
-            </x-menu>
-        </x-slot:sidebar>
-
-        {{-- The `$slot` goes here --}}
-        <x-slot:content>
-            {{ $slot }}
-        </x-slot:content>
-    </x-main>
-
-    {{--  TOAST area --}}
-    <x-toast />
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"9804ac39ffccbc2d","version":"2025.8.0","serverTiming":{"name":{"cfExtPri":true,"cfEdge":true,"cfOrigin":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}},"token":"cd0b4b3a733644fc843ef0b185f98241","b":1}' crossorigin="anonymous"></script>
 </body>
+
+<!-- Mirrored from preview.colorlib.com/theme/capitalshop/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 17 Sep 2025 01:01:52 GMT -->
 </html>

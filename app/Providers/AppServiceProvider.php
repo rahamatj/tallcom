@@ -23,5 +23,7 @@ class AppServiceProvider extends ServiceProvider
         $categories = \App\Models\Category::all();
         View::share('categories', $categories);
         View::share('trendingProducts', \App\Models\Product::where('is_trending', true)->get());
+        View::share('trendingProducts', \App\Models\Product::where('is_trending', true)->get());
+        View::share('youMayAlsoLikeProducts', \App\Models\Product::inRandomOrder()->take(8)->get());
     }
 }

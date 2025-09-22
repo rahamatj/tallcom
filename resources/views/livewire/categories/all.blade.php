@@ -16,7 +16,7 @@ new class extends Component {
         $categories = Category::when($this->search, function($query) {
                             $query->where('name', 'like', '%' . $this->search . '%');
                         })
-                        ->paginate(10);
+                        ->paginate(12);
 
         return [
             'categories' => $categories

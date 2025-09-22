@@ -2,6 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 
+Route::get("/", [\App\Http\Controllers\FrontendController::class, 'home'])->name('home');
+Route::get("/categories/{category}", [\App\Http\Controllers\FrontendController::class, 'category'])->name('category');
+Route::get("/products/{product}", [\App\Http\Controllers\FrontendController::class, 'product'])->name('product');
+Route::get("categorized-products/{category}", [\App\Http\Controllers\FrontendController::class, 'categorizedProducts'])->name('categorized-products');
+
 Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::view('/dashboard', 'admin.dashboard')->name('dashboard');
 
@@ -14,6 +19,4 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::view('/products/{product}/edit', 'admin.products.edit')->name('products.edit');
 });
 
-Route::get("/", [\App\Http\Controllers\FrontendController::class, 'home'])->name('home');
-Route::get("/categories/{category}", [\App\Http\Controllers\FrontendController::class, 'category'])->name('category');
 

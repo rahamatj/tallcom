@@ -172,5 +172,17 @@ class ProductSeeder extends Seeder
             'is_trending' => true,
             'you_may_like' => false,
         ]);
+
+        for ($i = 1; $i <= 100; $i++) {
+            Product::create([
+                'category_id' => rand(1, 4),
+                'name' => 'Product ' . $i,
+                'image' => 'frontend/assets/img/gallery/latest' . rand(1, 4) . '.jpg',
+                'price' => rand(50, 200),
+                'description' => 'Description for product ' . $i,
+                'is_trending' => rand(0, 1),
+                'you_may_like' => rand(0, 1),
+            ]);
+        }
     }
 }

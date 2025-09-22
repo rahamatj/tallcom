@@ -19,4 +19,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::view('/products/{product}/edit', 'admin.products.edit')->name('products.edit');
 });
 
+// API Routes
+require __DIR__.'/api.php';
+
 

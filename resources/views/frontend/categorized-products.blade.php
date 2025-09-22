@@ -1,3 +1,5 @@
 <x-layouts.app>
-    <livewire:categorized-products :category="$category" />
+    <div id="products">
+        @{{ message }}
+    </div>
 </x-layouts.app>
